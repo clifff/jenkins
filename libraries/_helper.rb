@@ -72,6 +72,7 @@ EOH
         h[:username] = username unless username.nil?
         h[:password] = password unless password.nil?
       end
+      Chef::Log.info "PLUGIN_DEBUG: executor options #{options.inspect}"
 
       Jenkins::Executor.new(options)
     end
@@ -239,8 +240,10 @@ EOH
     #
     def private_key_given?
       # @todo remove in 3.0.0
-      !node['jenkins']['executor']['private_key'].nil? ||
+      result = !node['jenkins']['executor']['private_key'].nil? ||
         !node.run_state[:jenkins_private_key].nil? # ~FC001
+      Chef::Log.info "PLUGIN_DEBUG: private_key_given? result is #{result.inspect}"
+      result
     end
 
     #
