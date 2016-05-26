@@ -242,6 +242,7 @@ EOH
       # @todo remove in 3.0.0
       result = !node['jenkins']['executor']['private_key'].nil? ||
         !node.run_state[:jenkins_private_key].nil? # ~FC001
+      Chef::Log.info "PLUGIN_DEBUG: private_key_given? node.run_state #{node.run_state.inspect}"
       Chef::Log.info "PLUGIN_DEBUG: private_key_given? result is #{result.inspect}"
       result
     end
