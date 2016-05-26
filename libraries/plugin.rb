@@ -313,6 +313,8 @@ EOH
       # Jenkins that prevents Jenkins from following 302 redirects, so we
       # use Chef to download the plugin and then use Jenkins to install it.
       # It's a bit backwards, but so is Jenkins.
+      Chef::Log.debug "PLUGIN_DEBUG: opts - #{opts.inspect}"
+      Chef::Log.debug "PLUGIN)DEBUG: run_state: #{ndoe.run_state.inspect}"
       executor.execute!('install-plugin', escape(plugin.path), '-name', escape(plugin_name), opts[:cli_opts])
     end
 
